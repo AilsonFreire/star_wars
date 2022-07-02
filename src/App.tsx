@@ -1,5 +1,14 @@
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import { Router } from "./Router";
+import { theme } from "./theme/theme";
+
 function App() {
-	return <div className="App"></div>;
+	return (
+		<ThemeProvider theme={theme}>
+			<Router />
+		</ThemeProvider>
+	);
 }
 
 export default App;
