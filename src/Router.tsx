@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/main";
 
 export const Router = () => (
 	<BrowserRouter>
-		<Route path="/">
-			<Main />
-		</Route>
+		<Routes>
+			<Route path="/" element={<Main />} />
+		</Routes>
 	</BrowserRouter>
 );
