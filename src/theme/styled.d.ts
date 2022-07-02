@@ -3,15 +3,16 @@ import "styled-components";
 declare module "styled-components" {
 	export interface DefaultTheme {
 		colors: {
-			PRIMARY: { MAIN: string; LIGHTER: string };
-			SECONDARY: { MAIN: string; LIGHTER: string };
-			TERTIARY: string;
+			PRIMARY: { DARK: string; MAIN: string; LIGHT: string };
+			SECONDARY: {
+				DARK: string;
+				MAIN: string;
+				LIGHT: string;
+				LIGHTER: string;
+			};
 		};
 		fonts: {
-			PRIMARAY: {
-				REGULAR: string;
-				BOLD: string;
-			};
+			PRIMARAY: string;
 		};
 	}
 }
