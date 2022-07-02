@@ -1,12 +1,14 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
+import { ReactComponent as MagnifyingIcon } from "../icons/magnifying.svg";
 
 const Container = styled.div`
+	align-items: center;
 	border: 1px solid ${({ theme: { colors } }) => colors.SECONDARY.LIGHTER};
 	border-radius: 4px;
 	display: flex;
-	align-items: center;
 	height: 35px;
+	padding: 0px 10px;
 	width: 100%;
 `;
 
@@ -15,6 +17,7 @@ const InputComponent = styled.input`
 	color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHT};
 	font-family: ${({ theme: { fonts } }) => fonts.PRIMARAY};
 	font-size: 14px;
+	padding-left: 10px;
 	&::placeholder {
 		color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHTER};
 	}
@@ -27,8 +30,14 @@ type InputProps = {
 };
 
 export const Input = ({ placeholder, value, onChange }: InputProps) => {
+	const {
+		colors: {
+			PRIMARY: { DARK },
+		},
+	} = useTheme();
 	return (
 		<Container>
+			<MagnifyingIcon fill={DARK} height={17} />
 			<InputComponent
 				placeholder={placeholder}
 				value={value}
