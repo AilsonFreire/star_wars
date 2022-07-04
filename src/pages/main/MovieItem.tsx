@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Typography } from "../../components/Typography";
+import { mapToRomanNumber } from "../../utils/helpers";
 import { Movie } from "../../utils/types";
 
 const Item = styled.button`
@@ -39,24 +40,17 @@ const ReleaseDate = styled(Typography)`
 	color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHT};
 `;
 
-const mapToRomanNumber: Record<number, string> = {
-	1: 'I',
-	2: 'II',
-	3: 'III',
-	4: 'IV',
-	5: 'V',
-	6: 'VI'
-}
-
 type MovieItemProps = {
-	movie: Movie
+	movie: Movie;
+	onSelectedMovie: (movie: Exclude<Movie, 'release_date'>) => void
 }
 
-export const MovieItem = ({ movie: { episode_id, title, release_date } }: MovieItemProps) => {
+export const MovieItem = ({ movie, onSelectedMovie }: MovieItemProps) => {
+	const { episode_id, title, release_date } = movie
 	return (
-		<Item>
+		<Item onClick={() => onSelectedMovie(movie)}>
 			<WrapperContent>
-				<Episode>EPISODE {episode_id} </Episode>
+				<Episode>EPISODE {episode_id}</Episode>
 				<MovieName>Episode {mapToRomanNumber[episode_id]} {title}</MovieName>
 			</WrapperContent>
 			<ReleaseDate>{release_date}</ReleaseDate>

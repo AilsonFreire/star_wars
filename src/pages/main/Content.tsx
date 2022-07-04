@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
+import { Typography } from "../../components/Typography";
+import { mapToRomanNumber } from "../../utils/helpers";
 import { Movie } from "../../utils/types";
 import { MovieItem } from "./MovieItem";
 
@@ -19,19 +22,57 @@ const CardContent = styled.div`
 	background-color: ${({ theme: { colors } }) => colors.PRIMARY.MAIN};
 `;
 
+const NoMovieSelected = styled(Typography).attrs({ weight: "bold" })`
+	align-items: center;
+	height: 100%;
+	color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHT};
+  display: flex;
+	justify-content: center;
+`;
+
+const MovieDescriptionTitle = styled(Typography).attrs({ weight: "bold", size: 22 })`
+	color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHT};
+	padding: 26px 20px 10px;
+`
+const MovieDescriptionContent = styled(Typography)`
+	color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHT};
+	padding: 10px 20px 10px;
+`;
+
 type ContentProps = {
 	movies: Movie[]
 }
 
 export const Content = ({ movies }: ContentProps) => {
-	const renderMoviesList = () => movies.map((movie, index) => <MovieItem key={index} movie={movie} />)
+	const [selectedMovie, setSelectedMovie] = useState<Exclude<Movie, 'release_date'>>();
+
+	const renderMoviesList = () => movies.map((movie, index) =>
+		<MovieItem key={index} movie={movie} onSelectedMovie={setSelectedMovie} />)
+
+	const renderContent = () =>
+		!selectedMovie ?
+			<NoMovieSelected>No movie selected</NoMovieSelected> :
+			<>
+				<MovieDescriptionTitle>
+					Episode {mapToRomanNumber[selectedMovie.episode_id]}
+					{" "}- {selectedMovie.title}
+				</MovieDescriptionTitle>
+				<MovieDescriptionContent>
+					{selectedMovie.opening_crawl}
+				</MovieDescriptionContent>
+				<MovieDescriptionContent>
+					Directy by: {selectedMovie.director}
+				</MovieDescriptionContent>
+			</>
 
 	return (
 		<Container isMobile={isMobile}>
 			<CardContent>
 				{renderMoviesList()}
 			</CardContent>
-			<CardContent></CardContent>
+			<CardContent>
+				{renderContent()}
+			</CardContent>
 		</Container>
 	);
 };
