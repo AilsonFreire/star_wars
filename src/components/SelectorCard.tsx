@@ -1,7 +1,6 @@
-import React from "react";
 import styled, { css, useTheme } from "styled-components";
-import { Typography } from "./Typography";
 import { ReactComponent as XIcon } from "../icons/x.svg";
+import { Typography } from "./Typography";
 
 type Align = {
 	top?: number;
@@ -37,7 +36,7 @@ const Header = styled.div`
 		${({ theme: { colors } }) => colors.SECONDARY.LIGHTER};
 	display: flex;
 	justify-content: space-between;
-	height: 30px;
+	height: 40px;
 	padding: 0px 10px;
 `;
 
@@ -46,7 +45,7 @@ const Option = styled.button`
 	border: none;
 	color: ${({ theme: { colors } }) => colors.SECONDARY.MAIN};
 	font-family: ${({ theme: { fonts } }) => fonts.PRIMARAY};
-	height: 25px;
+	height: 30px;
 	padding: 0px 0px 0px 20px;
 	text-align: left;
 	width: 100%;
@@ -98,12 +97,7 @@ export const SelectorCard = ({
 		<Container open={open} align={{ ...align }}>
 			<Header>
 				<Title>{title}</Title>
-				<XIcon
-					fill={DARK}
-					height={10}
-					onClick={onClose}
-					style={{ cursor: "pointer" }}
-				/>
+				<XIcon fill={DARK} height={10} width={10} onClick={onClose} />
 			</Header>
 			{renderOptions()}
 		</Container>

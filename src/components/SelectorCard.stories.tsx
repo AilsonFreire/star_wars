@@ -8,17 +8,14 @@ export default {
 };
 
 export const ShownSelector = () => (
-	<div
-		style={{ display: "flex", flex: 1, background: "red", height: 200 }}
-		className="asa"
-	>
+	<div style={{ display: "flex", flex: 1, background: "red", height: 200 }}>
 		<Button label="Sort by..." onClick={() => {}} />
 		<SelectorCard
 			title="Sort By"
 			open={true}
 			options={["Episode", "Year"]}
 			onSelect={(option) => option}
-			align={{ top: 40 }}
+			align={{ top: 60 }}
 			onClose={() => {}}
 		/>
 	</div>
