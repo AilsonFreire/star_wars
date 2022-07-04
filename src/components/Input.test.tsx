@@ -13,7 +13,6 @@ const RenderInput = () => {
 		/>
 	);
 };
-
 describe("Input", () => {
 	it("Should get a correct value when typing", async () => {
 		//Given

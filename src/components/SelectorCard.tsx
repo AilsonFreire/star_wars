@@ -1,3 +1,4 @@
+import React from "react";
 import styled, { css, useTheme } from "styled-components";
 import { ReactComponent as XIcon } from "../icons/x.svg";
 import { Typography } from "./Typography";
