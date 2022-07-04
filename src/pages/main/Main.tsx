@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { getStarWarsMovies } from "../../services/movies";
+import { mapToRomanNumber } from "../../utils/helpers";
 import { Movie } from "../../utils/types";
 import { Content } from "./Content";
 import { Header } from "./Header";
@@ -31,7 +32,16 @@ const Main: React.FC = () => {
 	const filterMovieBySearch = (value: string) => {
 		if (!value) {
 			refreshMoviesData()
+			return;
 		}
+
+		const formatedValue = RegExp(`.*${value.toLowerCase().split('').join('.*')}.*`)
+		const foundMovie = movies.filter(({ title, episode_id }) =>
+			`Episode ${mapToRomanNumber[episode_id]} ${title}`
+				.toLowerCase().match(formatedValue))
+
+		setMovies([...foundMovie])
+
 	}
 
 	return (

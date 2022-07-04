@@ -1,4 +1,3 @@
-import React from "react";
 import styled, { useTheme } from "styled-components";
 import { ReactComponent as MagnifyingIcon } from "../icons/magnifying.svg";
 
@@ -19,6 +18,7 @@ const InputComponent = styled.input`
 	font-family: ${({ theme: { fonts } }) => fonts.PRIMARAY};
 	font-size: 14px;
 	padding-left: 10px;
+	width: 100%;
 	&::placeholder {
 		color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHTER};
 	}
@@ -41,6 +41,7 @@ export const Input = ({ placeholder, value, onChange }: InputProps) => {
 			<MagnifyingIcon fill={DARK} height={17} />
 			<InputComponent
 				aria-label="input"
+				autoFocus
 				placeholder={placeholder}
 				value={value}
 				onChange={(value) => onChange(value.target.value)}
