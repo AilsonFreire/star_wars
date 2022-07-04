@@ -1,13 +1,29 @@
 import React from "react";
-import styled, { useTheme } from "styled-components";
+import styled, { css, useTheme } from "styled-components";
 import { Typography } from "./Typography";
 import { ReactComponent as XIcon } from "../icons/x.svg";
 
-const Container = styled.div`
-	border: 1px solid ${({ theme: { colors } }) => colors.SECONDARY.LIGHTER};
-	border-radius: 4px;
-	max-width: 200px;
-	min-height: 210px;
+type Align = {
+	top?: number;
+	left?: number;
+	bottom?: number;
+	right?: number;
+};
+
+const Container = styled.div<{ open: boolean; align: Align }>`
+	${({ theme: { colors }, align: { top, left, bottom, right }, open }) => css`
+		background-color: ${colors.PRIMARY.MAIN};
+		border: 1px solid ${colors.SECONDARY.LIGHTER};
+		border-radius: 4px;
+		width: 200px;
+		min-height: 210px;
+		position: absolute;
+		top: ${top}px;
+		left: ${left}px;
+		bottom: ${bottom}px;
+		right: ${right}px;
+		${!open && "display: none"}
+	`}
 `;
 
 const Title = styled(Typography)`
@@ -49,14 +65,20 @@ const Line = styled.div`
 
 type SelectorCardProps = {
 	title: string;
+	open: boolean;
 	options: string[];
-	onClick: (selectedOption: string) => void;
+	align?: Align;
+	onSelect: (selectedOption: string) => void;
+	onClose: () => void;
 };
 
 export const SelectorCard = ({
 	title,
 	options,
-	onClick,
+	open,
+	align,
+	onSelect,
+	onClose,
 }: SelectorCardProps) => {
 	const {
 		colors: {
@@ -67,15 +89,21 @@ export const SelectorCard = ({
 	const renderOptions = () =>
 		options.map((option, index) => (
 			<div key={index}>
-				<Option onClick={() => onClick(option)}>{option}</Option>
+				<Option onClick={() => onSelect(option)}>{option}</Option>
 				<Line />
 			</div>
 		));
+
 	return (
-		<Container>
+		<Container open={open} align={{ ...align }}>
 			<Header>
 				<Title>{title}</Title>
-				<XIcon fill={DARK} height={10} />
+				<XIcon
+					fill={DARK}
+					height={10}
+					onClick={onClose}
+					style={{ cursor: "pointer" }}
+				/>
 			</Header>
 			{renderOptions()}
 		</Container>

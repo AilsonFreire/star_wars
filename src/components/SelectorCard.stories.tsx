@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./Button";
 import { SelectorCard } from "./SelectorCard";
 
 export default {
@@ -6,10 +7,19 @@ export default {
 	component: SelectorCard,
 };
 
-export const Primary = () => (
-	<SelectorCard
-		title="Sort By"
-		options={["Episode", "Year"]}
-		onClick={(option) => option}
-	/>
+export const ShownSelector = () => (
+	<div
+		style={{ display: "flex", flex: 1, background: "red", height: 200 }}
+		className="asa"
+	>
+		<Button label="Sort by..." onClick={() => {}} />
+		<SelectorCard
+			title="Sort By"
+			open={true}
+			options={["Episode", "Year"]}
+			onSelect={(option) => option}
+			align={{ top: 40 }}
+			onClose={() => {}}
+		/>
+	</div>
 );

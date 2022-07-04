@@ -4,6 +4,7 @@ import { ReactComponent as MagnifyingIcon } from "../icons/magnifying.svg";
 
 const Container = styled.div`
 	align-items: center;
+	background-color: ${({ theme: { colors } }) => colors.PRIMARY.MAIN};
 	border: 1px solid ${({ theme: { colors } }) => colors.SECONDARY.LIGHTER};
 	border-radius: 4px;
 	display: flex;
