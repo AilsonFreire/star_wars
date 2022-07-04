@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Typography } from "../../components/Typography";
 import { Movie } from "../../utils/types";
@@ -17,13 +16,20 @@ const Item = styled.button`
 	}
 `;
 
+const WrapperContent = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+  flex-direction: row;
+`;
+
 const Episode = styled(Typography)`
 	color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHT};
+	margin-right: 20px;
 `;
 
 const MovieName = styled(Typography).attrs({ weight: "bold" })`
 	color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHT};
-	margin-left: 20px;
+	padding-right: 20px;
 `;
 
 const ReleaseDate = styled(Typography)`
@@ -33,16 +39,27 @@ const ReleaseDate = styled(Typography)`
 	color: ${({ theme: { colors } }) => colors.SECONDARY.LIGHT};
 `;
 
+const mapToRomanNumber: Record<number, string> = {
+	1: 'I',
+	2: 'II',
+	3: 'III',
+	4: 'IV',
+	5: 'V',
+	6: 'VI'
+}
+
 type MovieItemProps = {
 	movie: Movie
 }
 
-export const MovieItem: React.FC = () => {
+export const MovieItem = ({ movie: { episode_id, title, release_date } }: MovieItemProps) => {
 	return (
 		<Item>
-			<Episode>EPISODE</Episode>
-			<MovieName>Empire Strikes</MovieName>
-			<ReleaseDate>1989-05-05</ReleaseDate>
+			<WrapperContent>
+				<Episode>EPISODE {episode_id} </Episode>
+				<MovieName>Episode {mapToRomanNumber[episode_id]} {title}</MovieName>
+			</WrapperContent>
+			<ReleaseDate>{release_date}</ReleaseDate>
 		</Item>
 	);
 };

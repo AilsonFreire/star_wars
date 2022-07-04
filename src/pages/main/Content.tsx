@@ -24,7 +24,7 @@ type ContentProps = {
 }
 
 export const Content = ({ movies }: ContentProps) => {
-	const renderMoviesList = () => movies.map((movie, index) => <MovieItem key={index} />)
+	const renderMoviesList = () => movies.map((movie, index) => <MovieItem key={index} movie={movie} />)
 
 	return (
 		<Container isMobile={isMobile}>
