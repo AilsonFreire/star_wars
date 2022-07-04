@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
-import { Header as HeaderWrapper } from "../../components/Header";
+import { useState } from "react";
 import styled from "styled-components";
+import { Button } from "../../components/Button";
+import { Header as HeaderWrapper } from "../../components/Header";
+import { Input } from "../../components/Input";
 import { SelectorCard } from "../../components/SelectorCard";
 
 const InputContainer = styled.div`
@@ -11,7 +11,11 @@ const InputContainer = styled.div`
 	display: flex;
 `;
 
-export const Header = () => {
+type HeaderProps = {
+	onSelect: (option: string) => void
+}
+
+export const Header = ({ onSelect }: HeaderProps) => {
 	const [open, setOpenSelectorCard] = useState(false);
 	const closeModal = () => setOpenSelectorCard(false);
 
@@ -25,13 +29,16 @@ export const Header = () => {
 				title="Sort By"
 				open={open}
 				options={["Episode", "Year"]}
-				onSelect={(option) => option}
+				onSelect={(option) => {
+					closeModal()
+					onSelect(option)
+				}}
 				align={{ top: 60 }}
 				onClose={closeModal}
 			/>
 
 			<InputContainer>
-				<Input placeholder="Type to search..." value="" onChange={() => {}} />
+				<Input placeholder="Type to search..." value="" onChange={() => { }} />
 			</InputContainer>
 		</HeaderWrapper>
 	);

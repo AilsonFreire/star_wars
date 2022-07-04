@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { fireEvent, render, screen } from "../test-utils";
-import React, { useState } from "react";
 import { Input } from "./Input";
+import React from 'react';
 
 const RenderInput = () => {
 	const [inputValue, setInputValue] = useState("");
@@ -12,6 +13,7 @@ const RenderInput = () => {
 		/>
 	);
 };
+
 describe("Input", () => {
 	it("Should get a correct value when typing", async () => {
 		//Given

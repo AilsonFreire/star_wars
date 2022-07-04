@@ -15,9 +15,21 @@ const Main: React.FC = () => {
 		fetchMovies()
 	}, [])
 
+	const sortMoviesBySeletedOption = (option: string) => {
+		if (option === "Year") {
+			const sortedMovies = movies.sort((a, b) => (parseInt(a.release_date.replaceAll('-', '')) - parseInt(b.release_date.replaceAll('-', ''))))
+			setMovies([...sortedMovies])
+			return
+		}
+
+		const sortedMoviesByName = movies.sort((a, b) => a.title.localeCompare(b.title))
+		setMovies([...sortedMoviesByName])
+		return
+	}
+
 	return (
 		<div>
-			<Header />
+			<Header onSelect={sortMoviesBySeletedOption} />
 			<Content movies={movies} />
 		</div>
 	);

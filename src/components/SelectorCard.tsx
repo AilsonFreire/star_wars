@@ -97,7 +97,7 @@ export const SelectorCard = ({
 		<Container open={open} align={{ ...align }}>
 			<Header>
 				<Title>{title}</Title>
-				<XIcon fill={DARK} height={10} width={10} onClick={onClose} />
+				<XIcon fill={DARK} height={10} width={10} onClick={onClose} style={{ cursor: "pointer" }} />
 			</Header>
 			{renderOptions()}
 		</Container>
