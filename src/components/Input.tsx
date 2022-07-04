@@ -7,7 +7,7 @@ const Container = styled.div`
 	border: 1px solid ${({ theme: { colors } }) => colors.SECONDARY.LIGHTER};
 	border-radius: 4px;
 	display: flex;
-	height: 35px;
+	height: 33px;
 	padding: 0px 10px;
 	width: 100%;
 `;
