@@ -3,15 +3,15 @@ import { Typography } from "../../components/Typography";
 import { mapToRomanNumber } from "../../utils/helpers";
 import { Movie } from "../../utils/types";
 
-const Item = styled.button`
+const Item = styled.a`
 	background-color: ${({ theme: { colors } }) => colors.PRIMARY.MAIN};
 	border: none;
 	border-bottom: 1px solid
 		${({ theme: { colors } }) => colors.SECONDARY.LIGHTER};
 	display: flex;
 	padding: 15px;
-	width: 100%;
 	cursor: pointer;
+	text-decoration: none !important;
 	&:hover {
 		background-color: ${({ theme: { colors } }) => colors.PRIMARY.LIGHT};
 	}
@@ -48,7 +48,7 @@ type MovieItemProps = {
 export const MovieItem = ({ movie, onSelectedMovie }: MovieItemProps) => {
 	const { episode_id, title, release_date } = movie
 	return (
-		<Item onClick={() => onSelectedMovie(movie)}>
+		<Item href="#description" onClick={() => onSelectedMovie(movie)}>
 			<WrapperContent>
 				<Episode>EPISODE {episode_id}</Episode>
 				<MovieName>Episode {mapToRomanNumber[episode_id]} {title}</MovieName>

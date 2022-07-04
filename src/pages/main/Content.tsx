@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { isMobile } from "react-device-detect";
-import styled, { css } from "styled-components";
+import SkewLoader from "react-spinners/SkewLoader";
+import styled, { css, useTheme } from "styled-components";
 import { Typography } from "../../components/Typography";
 import { mapToRomanNumber } from "../../utils/helpers";
 import { Movie } from "../../utils/types";
@@ -39,11 +40,19 @@ const MovieDescriptionContent = styled(Typography)`
 	padding: 10px 20px 10px;
 `;
 
+const AlignLoading = styled.div`
+	align-items: center;
+  display: flex;
+	height: 100%;
+	justify-content: center;
+`;
+
 type ContentProps = {
 	movies: Movie[]
 }
 
 export const Content = ({ movies }: ContentProps) => {
+	const { colors: { SECONDARY } } = useTheme()
 	const [selectedMovie, setSelectedMovie] = useState<Exclude<Movie, 'release_date'>>();
 
 	const renderMoviesList = () => movies.map((movie, index) =>
@@ -68,9 +77,14 @@ export const Content = ({ movies }: ContentProps) => {
 	return (
 		<Container isMobile={isMobile}>
 			<CardContent>
-				{renderMoviesList()}
+				{
+					movies.length > 0 ? renderMoviesList() :
+						<AlignLoading>
+							<SkewLoader color={SECONDARY.LIGHT} size={25} />
+						</AlignLoading>
+				}
 			</CardContent>
-			<CardContent>
+			<CardContent id="description">
 				{renderContent()}
 			</CardContent>
 		</Container>

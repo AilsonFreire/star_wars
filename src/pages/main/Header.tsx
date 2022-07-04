@@ -12,11 +12,13 @@ const InputContainer = styled.div`
 `;
 
 type HeaderProps = {
-	onSelect: (option: string) => void
+	onSelect: (option: string) => void;
+	onSearch: (value: string) => void;
 }
 
-export const Header = ({ onSelect }: HeaderProps) => {
+export const Header = ({ onSelect, onSearch, }: HeaderProps) => {
 	const [open, setOpenSelectorCard] = useState(false);
+	const [inputValue, setInputValue] = useState("");
 	const closeModal = () => setOpenSelectorCard(false);
 
 	return (
@@ -38,7 +40,14 @@ export const Header = ({ onSelect }: HeaderProps) => {
 			/>
 
 			<InputContainer>
-				<Input placeholder="Type to search..." value="" onChange={() => { }} />
+				<Input
+					placeholder="Type to search..."
+					value={inputValue}
+					onChange={(value) => {
+						setInputValue(value);
+						onSearch(value);
+					}}
+				/>
 			</InputContainer>
 		</HeaderWrapper>
 	);
