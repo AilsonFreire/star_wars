@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./pages/main";
+import Main from "./pages/main/Main";
 
 export const Router = () => (
 	<BrowserRouter>
