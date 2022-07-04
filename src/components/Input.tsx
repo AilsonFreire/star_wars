@@ -40,6 +40,7 @@ export const Input = ({ placeholder, value, onChange }: InputProps) => {
 		<Container>
 			<MagnifyingIcon fill={DARK} height={17} />
 			<InputComponent
+				aria-label="input"
 				placeholder={placeholder}
 				value={value}
 				onChange={(value) => onChange(value.target.value)}
