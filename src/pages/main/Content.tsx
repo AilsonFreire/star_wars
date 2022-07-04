@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { isMobile } from "react-device-detect";
 import SkewLoader from "react-spinners/SkewLoader";
 import styled, { css, useTheme } from "styled-components";
@@ -84,7 +84,7 @@ export const Content = ({ movies }: ContentProps) => {
 						</AlignLoading>
 				}
 			</CardContent>
-			<CardContent id="description">
+			<CardContent id={isMobile ? "description" : ""}>
 				{renderContent()}
 			</CardContent>
 		</Container>
