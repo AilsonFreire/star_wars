@@ -7,5 +7,9 @@ export default {
 };
 
 export const Primary = () => (
-	<SelectorCard title="Sort By" options={["Episode", "Year"]} />
+	<SelectorCard
+		title="Sort By"
+		options={["Episode", "Year"]}
+		onClick={(option) => option}
+	/>
 );

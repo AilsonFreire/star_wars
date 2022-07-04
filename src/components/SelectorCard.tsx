@@ -50,9 +50,14 @@ const Line = styled.div`
 type SelectorCardProps = {
 	title: string;
 	options: string[];
+	onClick: (selectedOption: string) => void;
 };
 
-export const SelectorCard = ({ title, options }: SelectorCardProps) => {
+export const SelectorCard = ({
+	title,
+	options,
+	onClick,
+}: SelectorCardProps) => {
 	const {
 		colors: {
 			PRIMARY: { DARK },
@@ -60,11 +65,11 @@ export const SelectorCard = ({ title, options }: SelectorCardProps) => {
 	} = useTheme();
 
 	const renderOptions = () =>
-		options.map((option) => (
-			<>
-				<Option>{option}</Option>
+		options.map((option, index) => (
+			<div key={index}>
+				<Option onClick={() => onClick(option)}>{option}</Option>
 				<Line />
-			</>
+			</div>
 		));
 	return (
 		<Container>
