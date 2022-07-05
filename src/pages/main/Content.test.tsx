@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "../../test-utils";
+import { render, screen } from "../../test-utils";
 import React from "react";
 import { Content } from "./Content";
 
